@@ -7,8 +7,8 @@ Script sells at market rate, withdraws to wallet.
 # pylint: disable=C0301, C0103, R0914, E0401
 
 import time
+import random
 import hmac
-import urllib
 import hashlib
 import base64
 import json
@@ -78,21 +78,28 @@ def main():
         # Sleep for allotted time.
         time.sleep(SECONDS_TO_SLEEP)
 
-def generate_header(API_KEY, API_SECRET, url, post_data = None):
+def generate_header(API_KEY, API_SECRET, url, post_data):
 
     ''' Generate secure header for private API calls '''
 
-    nonce = str(int(time.time()))
-    post_data = json.dumps(post_data)
-    md5 = hashlib.md5()
-    md5.update(post_data)
-    rcb64 = base64.b64encode(md5.digest())
-    signature = API_KEY + 'POST' + \
-        urllib.quote_plus(url).lower() + nonce + rcb64
-    sign = base64.b64encode(hmac.new(API_SECRET, signature, hashlib.sha256).digest())
-    header_value = 'amx ' + API_KEY + ':' + sign + ':' + nonce
+    # Generate a Request Time Stamp and use as a nonce, UNIQUE
+    nonce = str(int(time.time())) + '.' + str(random.randint(0, 1000))
 
-    return {'Authorization': header_value, 'Content-Type': 'application/json; charset=utf-8'}
+    # Generate signature data (API_KEY/SECRET, RequestURL+Method, Nonce, base64string)
+    md5 = hashlib.md5()
+    md5.update(post_data.encode('UTF-8'))
+    b64 = base64.b64encode(md5.digest())
+    request_signature = API_KEY + 'POST' + url + nonce + b64.decode("UTF-8")
+
+    # Sign using HMAC-SHA256
+    hmacraw = hmac.new(API_SECRET, request_signature, hashlib.sha256).digest()
+    sign = base64.b64encode(hmacraw)
+
+    # Combine into request header
+    request_header = 'amx ' + API_KEY + ':' + sign + ':' + nonce
+    print request_header + '\n'
+
+    return {'Authorization': request_header, 'Content-Type': 'application/json; charset=utf-8'}
 
 def check_exchange_balance(API_KEY, API_SECRET, SELL_CURRENCY, WITHDRAW_CURRENCY, req=None):
 
@@ -100,8 +107,9 @@ def check_exchange_balance(API_KEY, API_SECRET, SELL_CURRENCY, WITHDRAW_CURRENCY
 
     # Generate header and send POST request
     url = 'https://www.cryptopia.co.nz/Api/GetBalance'
-    headers = generate_header(API_KEY, API_SECRET, url)
-    response = requests.post(url, data=None, headers=headers)
+    post_data = json.dumps(req)
+    headers = generate_header(API_KEY, API_SECRET, url, post_data)
+    response = requests.post(url, data=post_data, headers=headers)
     response.encoding = 'utf-8-sig'
 
     # Grab balances from response
