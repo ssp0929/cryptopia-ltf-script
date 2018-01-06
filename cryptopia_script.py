@@ -4,7 +4,7 @@
 Script sells at market rate, withdraws to wallet.
 '''
 
-# pylint: disable=C0301, C0103, R0914, E0401
+# pylint: disable=C0301, C0103, R0914, E0401, R0912, R0915, W0612
 
 import time
 import requests
@@ -17,11 +17,11 @@ def main():
     # Replace with your API key and API secret.
     # Do not host this file anywhere publicly
     # or your key/secret will be scraped by a bot.
-    API_KEY = '6ce2486a3d3942e191cb27a87dba1be7'
-    API_SECRET = 'LN9ddMXRPE2u2c2B3vNLC7FMC3i6XP55YJynGy4kn/A='
+    API_KEY = 'Your api key.'
+    API_SECRET = 'Your api secret.'
 
     # Replace with your wallet address.
-    WALLET_ADDRESS = '14mTzZvZPJ2dydYBLqU68hGHhjNTG2Hqwu'
+    WALLET_ADDRESS = 'Your wallet address.'
 
     # Replace with coin you want to check balance of and sell to BTC.
     SELL_CURRENCY = 'LTC'
@@ -30,7 +30,7 @@ def main():
     WITHDRAW_CURRENCY = 'BTC'
 
     # Sell balance threshold i.e. balance of SELL_CURRENCY must be above SELL_THRESHOLD to sell.
-    SELL_THRESHOLD = .005
+    SELL_THRESHOLD = .0005
 
     # Withdraw balance threshold i.e. balance of WITHDRAW_CURRENCY must be above WITHDRAW_THRESHOLD to withdraw.
     WITHDRAW_THRESHOLD = .0011
