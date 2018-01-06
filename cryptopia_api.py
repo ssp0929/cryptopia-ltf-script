@@ -25,6 +25,7 @@ class Api(object):
 
     def api_query(self, feature_requested, get_parameters=None, post_parameters=None):
         """ Performs a generic api request """
+        DEBUG = False
         time.sleep(1)
         if feature_requested in self.private:
             url = "https://www.cryptopia.co.nz/Api/" + feature_requested
@@ -37,15 +38,17 @@ class Api(object):
                 except requests.exceptions.RequestException as ex:
                     return None, "Status Code : " + str(ex)
             req = req.json()
+            if DEBUG:
+                print "\n--------------------------------\n"
+                print "PRINTING API CALL RESPONSE: "
+                print req
+                print "\n--------------------------------\n"
             if req['Success'] is True:
                 result = req['Data']
                 error = None
             else:
                 result = None
-                if req['Message'] is None:
-                    error = "Unknown response error"
-                else:
-                    error = req['Message']
+                error = req['Error']
             return (result, error)
         elif feature_requested in self.public:
             url = "https://www.cryptopia.co.nz/Api/" + feature_requested + "/" + \
