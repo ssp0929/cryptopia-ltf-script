@@ -3,6 +3,8 @@ This is a wrapper for Cryptopia.co.nz API
 Grabbed from https://github.com/crypto-crew-tech/cryptopia-api-python
 """
 
+# pylint: disable=E0401, C0103, R0912
+
 import urllib
 import json
 import time
