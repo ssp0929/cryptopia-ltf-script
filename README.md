@@ -3,6 +3,8 @@
 Configured to sell cryptocurrency of your choice at market rate if coins surpass a certain threshold.
 Configured to withdraw cryptocurrency of your choice to your designated wallet.
 
+P.S. API keys in prior commits have already been changed and are now invalid.
+
 (Only have to do this once)
 > pipenv install
 
