@@ -1,10 +1,9 @@
 # Script
 
-Script request for LTF.
-Sell at market rate.
-Withdraw to wallet.
-
-How to use: From current directory type
+How to use:
+> Open folder
+> SHIFT-RIGHT CLICK on empty space and click 'Open powershell window here'
+Now in the powershell type below:
 (Only have to do this once)
 > pipenv install
 (Use this to run the script in the future)
