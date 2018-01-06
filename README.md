@@ -1,4 +1,7 @@
-# Script
+# What this script does?
+
+Configured to sell cryptocurrency of your choice at market rate if coins surpass a certain threshold.
+Configured to withdraw cryptocurrency of your choice to your designated wallet.
 
 (Only have to do this once)
 > pipenv install
