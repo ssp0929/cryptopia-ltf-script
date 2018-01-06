@@ -67,14 +67,14 @@ def main():
             print 'You have a balance of ' + str(balance['Available']) + ' ' + SELL_CURRENCY + '.'
             # Check if balance is above sell threshold
             if balance['Available'] > SELL_THRESHOLD:
-                # Request LTC/BTC market data
+                # Request SELL_CURRENCY/BTC market data
                 url = 'https://www.cryptopia.co.nz/api/GetMarkets/BTC'
                 response = requests.get(url).json()
                 data = response['Data']
 
-                # Find LTC/BTC row
+                # Find SELL_CURRENCY/BTC row
                 for item in data:
-                    if item['Label'] == 'LTC/BTC':
+                    if item['Label'] == market:
                         rate = item['AskPrice']
                         break
 
