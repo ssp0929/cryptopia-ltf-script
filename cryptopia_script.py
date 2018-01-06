@@ -17,11 +17,16 @@ def main():
     # Replace with your API key and API secret.
     # Do not host this file anywhere publicly
     # or your key/secret will be scraped by a bot.
-    API_KEY = 'Your api key.'
-    API_SECRET = 'Your api secret.'
+    # API KEY and SECRET CAN BE FOUND AT https://www.cryptopia.co.nz/Security
+    # Remember to check 'Enable API'
+    # Remember to check 'Enable Withdrawal'
+    # Remember to check 'AddressBook Withdraw Only'
+    API_KEY = 'Your API key'
+    API_SECRET = 'Your API secret'
 
     # Replace with your wallet address.
-    WALLET_ADDRESS = 'Your wallet address.'
+    # Make sure you add this wallet address to your withdraw address book in https://www.cryptopia.co.nz/Security
+    WALLET_ADDRESS = 'Wallet Address'
 
     # Replace with coin you want to check balance of and sell to BTC.
     SELL_CURRENCY = 'LTC'
