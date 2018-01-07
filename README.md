@@ -12,8 +12,11 @@ P.S. API keys in prior commits have already been changed and are now invalid.
 
 > pipenv run python cryptopia_script.py
 
-Requirements: Make sure Python 2.7 is installed on your computer.
-Make sure pipenv is installed on your computer.
+# Requirements
+Make sure Python 2.7 is installed on your computer.
 https://www.python.org/downloads/
+
+Make sure pipenv is installed on your computer.
+> pip install pipenv
 
 Wrapper for Cryptopia.co.nz API grabbed from https://github.com/crypto-crew-tech/cryptopia-api-python
